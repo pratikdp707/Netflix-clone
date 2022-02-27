@@ -20,6 +20,7 @@ router.post('/register', async (req, res) => {
 
 //Login
 router.post('/login', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
@@ -45,6 +46,5 @@ router.post('/login', async (req, res) => {
         res.status(500).json(error);
     }
 })
-
 
 module.exports = router;

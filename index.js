@@ -7,9 +7,11 @@ const userRoute = require('./routes/users')
 const movieRoute = require('./routes/movies')
 const listRoute = require('./routes/lists')
 const cors = require('cors')
+const port = process.env.PORT || 4000;
 
-
-app.use(cors());
+app.use(cors({
+    origin: "*"
+}));
 //Connecting with database
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -28,6 +30,6 @@ app.use('/api/users', userRoute);
 app.use('/api/movie', movieRoute)
 app.use('/api/list', listRoute);
 
-app.listen(4000, () => {
+app.listen(port, () => {
     console.log("Server is running on port 4000"); 
 })
